@@ -20,6 +20,7 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(cookieparser());
 // for store the resume pdf
 app.use(
@@ -49,12 +50,15 @@ app.use("/apis/admin", admintable);
 app.use("/apis/adminlogin", adminlogin);
 app.use("/apis/resume", resume);
 
-
-
-app.get('*', (req, res) => {
-  res.sendFile(path.dirname(fileURLToPath(import.meta.url)), "./public/index.html");
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.join(
+      path.dirname(fileURLToPath(import.meta.url)),
+      "public",
+      "index.html"
+    )
+  );
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
